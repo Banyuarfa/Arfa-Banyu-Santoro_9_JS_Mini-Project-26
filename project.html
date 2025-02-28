@@ -1,135 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Mini Project 26</title>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                font-family: sans-serif;
-            }
-            body {
-                height: 100vh;
-                display: grid;
-                place-content: center;
-            }
-            .radio-group {
-                display: flex;
-                gap: 1rem;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Project 26</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Uynab Sorting</h1>
+    <br />
 
-            table {
-                width: fit-content;
-            }
-            #table tr,
-            #table td {
-                border: 1px black solid;
-                padding: 0.25rem;
-            }
-            #table {
-                width: 80vw;
-            }
-            .delete {
-                background-color: rgb(255, 142, 142);
-            }
-            .edit {
-                background-color: rgb(247, 255, 172);
-            }
-            button {
-                border: none;
-                padding: 0.25rem;
-                border-radius: 2px;
-                margin-right: 0.25rem;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Uynab Sorting</h1>
-        <br />
+    <table>
+      <tr>
+        <td><label for="numbers">Angka</label></td>
+        <td>
+          <input type="text" name="numbers" id="numbers" pattern="[0-9,]" />
+        </td>
+      </tr>
+      <tr>
+        <td><label for="sort">Sort</label></td>
+        <td>
+          <input
+            type="radio"
+            name="sort"
+            id="ascending"
+            value="ascending"
+          />Ascending
+          <input
+            type="radio"
+            name="sort"
+            id="descending"
+            value="descending"
+          />Descending
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button
+            onclick="handleSorting()"
+            style="background-color: aquamarine"
+          >
+            Sort
+          </button>
+        </td>
+      </tr>
+    </table>
 
-        <table>
-            <tr>
-                <td><label for="numbers">Angka</label></td>
-                <td>
-                    <input
-                        type="text"
-                        name="numbers"
-                        id="numbers"
-                        pattern="[0-9,]"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td><label for="sort">Sort</label></td>
-                <td>
-                    <input
-                        type="radio"
-                        name="sort"
-                        id="ascending"
-                        value="ascending"
-                    />Ascending
-                    <input
-                        type="radio"
-                        name="sort"
-                        id="descending"
-                        value="descending"
-                    />Descending
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button
-                        onclick="handleSorting()"
-                        style="background-color: aquamarine"
-                    >
-                        Sort
-                    </button>
-                </td>
-            </tr>
-        </table>
-
-        <br />
-        <hr />
-        <br />
-        <table id="table" style="text-align: center"></table>
-        <script>
-            const numbers = document.querySelector('#numbers');
-            const ascending = document.querySelector('#ascending');
-            const descending = document.querySelector('#descending');
-            const sort = document.querySelector('[name="sort"]');
-            const table = document.querySelector('#table');
-
-            const handleSorting = () => {
-                let sortedNumbers = [];
-                const numbersArray = numbers.value
-                    .split(',')
-                    .map((number) => parseFloat(number.trim()));
-
-                if (ascending.checked) {
-                    sortedNumbers = numbersArray.sort((a, b) => a - b);
-                } else {
-                    sortedNumbers = numbersArray.sort((a, b) => b - a);
-                }
-
-                table.innerHTML = '';
-
-                const tr = document.createElement('tr');
-                const td = document.createElement('td');
-                td.textContent = `Angka`;
-                td.style.fontWeight = 'bold';
-                tr.appendChild(td);
-                table.appendChild(tr);
-                sortedNumbers.map((num) => {
-                    const tr = document.createElement('tr');
-                    const td = document.createElement('td');
-                    td.textContent = num;
-                    tr.appendChild(td);
-                    table.appendChild(tr);
-                });
-            };
-        </script>
-    </body>
+    <br />
+    <hr />
+    <br />
+    <table id="table" style="text-align: center"></table>
+    <script src="script.js"></script>
+  </body>
 </html>
